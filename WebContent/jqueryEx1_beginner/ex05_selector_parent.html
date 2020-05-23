@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      textarea:focus,
+      input:focus {
+        outline: none;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(function () {
+        $("table.tb td:empty").css("background-color", "#d9d9d9");
+        $("table.tb td:contains('다다다')").parent().css("background-color", "pink");
+        $("table.tb td:contains('다다다')").css("font-weight", "bold").css("font-size", "2rem");
+        $("div:has('b')").css("color", "red"); //b태그를 가지고 있는 div
+      });
+    </script>
+  </head>
+  <body>
+    <h3>jQuery 셀렉터</h3>
+    <div><b>필터</b> 연습 중입니다.</div>
+    <div>열공합시다!!!</div>
+    <table class="tb" border="1" style="width: 300px; border-collapse: collapse;">
+      <tr>
+        <td width="100">이름</td>
+        <td width="100">국어</td>
+        <td width="100">영어</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>80</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>80</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>다다다</td>
+        <td>80</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>황길자</td>
+        <td>80</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>백명길</td>
+        <td>80</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>정명수</td>
+        <td>80</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>황호동</td>
+        <td>80</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>김재석</td>
+        <td>80</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>심심해</td>
+        <td>80</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>김순길</td>
+        <td>80</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>김황현</td>
+        <td>80</td>
+        <td>80</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      .yb {
+        background: yellow;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      /*
+      VAL, ATTR, PROP
+      🍔 <input ... value=""/>에서  value 속성을 제어하기
+      가져오기: $("선택자").val();
+      설정하기: $("선택자").val("값");
+      🍔 <input type="checkbox" />
+      🍔 <input type="radio" />
+      선택/해제하기: $("선택자").prop("checked", true/false);
+      선택여부: $("선택자").is("checked"); => true(선택됨), false(선택되지 않음)
+      
+      🍔 readonly, disabled, selected 속성을 지정할 때는 prop()함수를 이용해야 한다.
+        $("선택자").prop("readonly",true/false); // readonly속성은 서버로 값이 전송된다.
+        $("선택자").prop("disabled",true/false); // disabled속성은 서버로 값이 전달되지 않는다.
+        $("선택자").prop("selected",true/false);
+
+      🍔 나머지 기타 속성 값 가져오기
+        가져오기: var 변수 = $("선택자").attr("속성명");
+        설정하기: $("선택자").attr("속성명", "값");
+
+      */
+      $(function () {
+        $(".btn").click(function () {});
+        $(".btn1").click(function () {
+          var s = "";
+          //체크박스의 선택 여부 확인
+          if ($("div input[name=subject]").is(":checked")) {
+            s = $("div input[name=subject]").val();
+          }
+          //value속성 값을 가져올 때는 val함수를 이용한다.
+          s += " " + $("div input[name=score]").val();
+          //이외의 속성 값을 가져올 떄는 attr를 이용한다. 객체.attr("속성명")
+          s += " " + $(".reply").attr("data-num");
+
+          //클래스 속성 존재 여부 (hasClass)
+          var isClass = $("div span.reply").hasClass("yb"); //true/false값을 반환한다.
+          s += " \nyb클래스: " + isClass;
+
+          alert(s);
+        });
+        $(".btn2").click(function () {
+          //체크박스를 선택하도록
+          //아래의 방법대로 수행하면 사용자가 선택한 상태에서는 선택설정/해제가 먹히지 않는다.
+          // $("div input[name=subject]").attr("checked", true);
+          $("div input[name=subject]").prop("checked", true);
+          $("div input[name=score]").prop("readonly", false); //readonly속성은 서버로 값이 전송된다.
+          $("div input[name=age]").prop("disabled", false); //disabled속성은 서버로 값이 전송되지 않는다.
+
+          //class 속성 추가하기
+          $("div span.reply").addClass("yb");
+
+          //기타 일반적인 속성 추가하기
+          //$("#photo").attr("src", "./card-default.png");
+          $("#photo").attr({
+            src: "./card-default.png",
+            title: "카드",
+          });
+        });
+        $(".btn3").click(function () {
+          //체크박스를 선택해제
+          //아래의 방법대로 수행하면 사용자가 선택한 상태에서는 선택설정/해제가 먹히지 않는다.
+          // $("div input[name=subject]").attr("checked", false);
+          $("div input[name=subject]").prop("checked", false);
+
+          //readonly 속성 부여하기
+          $("div input[name=score]").prop("readonly", true); //readonly속성은 서버로 값이 전송된다.
+          $("div input[name=age]").prop("disabled", true); //disabled속성은 서버로 값이 전송되지 않는다.
+
+          //class 속성 제거하기
+          $("div span.reply").removeClass("yb");
+
+          //src 속성 제거하기
+          $("#photo").removeAttr("src");
+        });
+      });
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\
+      //bind함수: 이벤트 등록함수
+      $(function () {
+        $("#layout")
+          .bind("mouseover", function () {
+            $(this).addClass("yb");
+          })
+          .bind("mouseout", function () {
+            $(this).removeClass("yb");
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <h3>속성</h3>
+    <!--form>
+      <p>이름: <input type="text" name="name" /></p>
+      <p>점수: <input type="text" name="score" /></p>
+      <p>
+        <input type="radio" name="gender" value="M" /> 남자
+        <input type="radio" name="gender" value="W" /> 여자
+      </p>
+      <p>
+        <button type="submit" class="btn">확인</button>
+      </p>
+    </form-->
+    <div>
+      <p>
+        <button type="button" class="btn1">확인</button>
+        <button type="button" class="btn2">속성 변경</button>
+        <button type="button" class="btn3">속성 제거</button>
+      </p>
+      <p><input type="checkbox" name="subject" value="자바" /> 자바</p>
+      <p>점수: <input type="text" name="score" value="80" /></p>
+      <p>나이: <input type="text" name="age" value="22" /></p>
+      <p>
+        <span class="reply" data-num="30">1</span>
+      </p>
+      <p>
+        <img id="photo" src="" alt="image" />
+      </p>
+    </div>
+    <hr />
+    <div id="layout" style="width: 300px; height: 200px; border: 1px solid #d0d0d0;"></div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(function () {
+        $("#btn1").click(function () {
+          $("#layout").html("<b>스프링</b>"); // innerHTML
+        });
+        $("#btn2").click(function () {
+          var s = $("#layout").html();
+          alert(s);
+        });
+        $("#btn3").click(function () {
+          $("#layout").text("<b>스프링</b>"); // innerText
+        });
+        $("#btn4").click(function () {
+          var s = $("#layout").text();
+          alert(s);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h3>조작</h3>
+    <div id="layout">
+      <b>자바</b>
+    </div>
+    <hr />
+    <div>
+      <button type="button" id="btn1">HTML 설정</button>
+      <button type="button" id="btn2">HTML 반환</button>
+      <button type="button" id="btn3">Text 설정</button>
+      <button type="button" id="btn4">Text 반환</button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(function () {
+        $("#layout button").click(function () {
+          var s = $(this).text();
+          alert(s);
+        });
+
+        $("#btn3").click(function () {
+          var s1 = $("#btn1").clone(); //복제(이벤트 핸들러는 복제되지 않는다.)
+          var s2 = $("#btn2").clone(true); //복제 (with 이벤트 핸들러)
+
+          $("#result").prepend(s1);
+          $("#result").append(s2);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h3>조작</h3>
+    <div id="layout">
+      <button type="button" id="btn1">이전</button>
+      <button type="button" id="btn2">다음</button>
+    </div>
+    <hr />
+    <p>
+      <button type="button" id="btn3">복제</button>
+    </p>
+    <div id="result"></div>
+  </body>
+</html>

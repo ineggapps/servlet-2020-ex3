@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(function () {
+        $("#btn1").click(function () {
+          $("#layout").empty(); //선택 요소의 내용을 지운다. 태그(div#layout)는 그대로 남아 있다.
+        });
+        $("#btn2").click(function () {
+          $("#layout").remove(); // 선택 요소의 태그를 지운다. 태그(div#layout) 요소가 지워진다.
+        });
+        $("#btn3").click(function () {
+          $("#layout").append("<p>CSS</p>");
+        });
+        var $t = null; //$(function(){...}) 안에서 사용되는 함수
+        $("#btn4").click(function () {
+          $t = $(".p1").detach(); // remove와 유사하지만 삭제된 요소를 반환하는 메서드는 detach이다.
+        });
+        $("#btn5").click(function () {
+          if (!$t) {
+            return;
+          }
+          $("#layout").before($t);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h3>조작</h3>
+    <div id="layout">
+      <p>자바</p>
+      <p>스프링</p>
+      <p class="p1">html</p>
+    </div>
+    <div>
+      <p>
+        <button type="button" id="btn1">내용 제거</button>
+        <button type="button" id="btn2">요소 제거</button>
+        <button type="button" id="btn3">내용 추가</button>
+        <button type="button" id="btn4">잘라내기</button>
+        <button type="button" id="btn5">붙이기</button>
+      </p>
+    </div>
+  </body>
+</html>

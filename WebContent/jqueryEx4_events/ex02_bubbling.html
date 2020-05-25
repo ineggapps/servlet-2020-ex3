@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      .yb {
+        background-color: yellow;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      /*
+        버블링이 발생하는 이벤트의 경우에는 자식의 이벤트가 먼저  발생된다.
+        🍟 focusin, focusout:버블링 발생, 부모에게도 이벤트가 전달된다.
+        🍟 focus, blur: 버블링 발생하지 않음. 부모에게 이벤트가 전달되지 않는다.
+      */
+      $(function () {
+        $("#layout").focus(function () {
+          console.log("부모 focus");
+        });
+
+        $("#inputs").focus(function () {
+          console.log("input focus");
+        });
+
+        $("#layout").focusin(function () {
+          console.log("부모 focusin");
+          $(this).css("background-color", "skyblue");
+        });
+
+        $("#inputs").focusin(function () {
+          console.log("input focusin");
+        });
+
+        $("#layout").focusout(function () {
+          console.log("부모 focusout");
+          $(this).css("background-color", "transparent");
+        });
+
+        $("#inputs").focusout(function () {
+          console.log("input focusout");
+        });
+      });
+
+      $(function () {
+        $("#layout1").click(function () {
+          console.log("부모1... 이벤트");
+        });
+        $("#span1").click(function () {
+          //click 이벤트는 부모에게도 이벤트가 전달된다.
+          console.log("자식1... 이벤트"); //span1을 누른 경우 span1의 클릭 이벤트가 발생하고 layout1클릭 이벤트가 발생된다.
+        });
+      });
+
+      $(function () {
+        $("#layout2").click(function () {
+          console.log("부모2... 이벤트");
+        });
+        $("#span2").click(function () {
+          //click 이벤트는 부모에게도 이벤트가 전달된다.
+          console.log("자식2... 이벤트"); //span1을 누른 경우 span1의 클릭 이벤트가 발생하고 layout1클릭 이벤트가 발생된다.
+          return false; //이벤트 취소(버블링을 발생시키지 않음)
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h3>이벤트</h3>
+    <div id="layout"><input type="text" id="inputs" />aaa</div>
+    <hr />
+    <div id="layout1"><span id="span1">눌러봐1</span>확인1</div>
+    <div id="layout2"><span id="span2">눌러봐2</span>확인2</div>
+    <hr />
+  </body>
+</html>

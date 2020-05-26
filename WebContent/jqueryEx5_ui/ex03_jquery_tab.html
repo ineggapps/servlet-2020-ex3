@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"
+      type="text/css"
+    />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function () {
+        $("#tabs").tabs();
+      });
+    </script>
+  </head>
+  <body>
+    <div id="tabs">
+      <ul>
+        <li>
+          <a href="#tab1"><span>처음</span></a>
+        </li>
+        <li>
+          <a href="#tab2"><span>두 번째</span></a>
+        </li>
+        <li>
+          <a href="#tab3"><span>세 번째</span></a>
+        </li>
+      </ul>
+      <div id="tab1">테스트1</div>
+      <div id="tab2">테스트2</div>
+      <div id="tab3">테스트3</div>
+    </div>
+  </body>
+</html>

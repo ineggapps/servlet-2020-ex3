@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<style type="text/css">
+* {
+	margin: 0px; padding: 0px;
+}
+
+body {
+	font-size: 14px;
+	font-family: 맑은 고딕, 돋움;
+}
+.btn {
+    color:#333333;
+    font-weight:500;
+    font-family:"Malgun Gothic", "맑은 고딕", NanumGothic, 나눔고딕, 돋움, sans-serif;
+    border:1px solid #cccccc;
+    background-color:#fff;
+    text-align:center;
+    cursor:pointer;
+    padding:3px 10px 5px;
+    border-radius:4px;
+}
+.btn:active, .btn:focus, .btn:hover {
+    background-color:#e6e6e6;
+    border-color: #adadad;
+    color: #333333;
+}
+.boxTF {
+    border:1px solid #999999;
+    padding:3px 5px 5px;
+    border-radius:4px;
+    background-color:#ffffff;
+    font-family:"Malgun Gothic", "맑은 고딕", NanumGothic, 나눔고딕, 돋움, sans-serif;
+}
+</style>
+
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type='text/javascript'>
+$(function(){
+    var date = new Date();
+	var year = date.getFullYear();
+	var month = date.getMonth()+1;
+	var lastDay = (new Date(year, month, 0)).getDate();
+	
+	if(month<10) month="0"+month
+	
+	var startDate=year+"-"+month+"-"+"01";
+	var endDate=year+"-"+month+"-"+lastDay;
+	
+	$("#resultDate").attr("data-start", startDate);
+	$("#resultDate").attr("data-end", endDate);
+	
+	var s=startDate + "~" + endDate;
+	$("#resultDate").html(s);
+});
+
+function monthMove(m) {
+	var startDate=$("#resultDate").attr("data-start");
+	var endDate=$("#resultDate").attr("data-end");
+	
+	var ss = startDate.split("-");
+	
+	var year = parseInt(ss[0]);
+	var month = parseInt(ss[1])+m;
+	var date = new Date(year, month, 0);
+	var lastDay;
+	year = date.getFullYear();
+	month = date.getMonth()+1;
+	lastDay = date.getDate();
+
+	if(month<10) month="0"+month
+	
+	var startDate=year+"-"+month+"-"+"01";
+	var endDate=year+"-"+month+"-"+lastDay;
+	
+	$("#resultDate").attr("data-start", startDate);
+	$("#resultDate").attr("data-end", endDate);
+	
+	var s=startDate + "~" + endDate;
+	$("#resultDate").html(s);
+}
+</script>
+</head>
+<body>
+
+<div style="width:800px; margin: 10px auto;">
+       <button type="button" class="btn" onclick="monthMove(-1);">이전달</button>
+       <span id="resultDate" data-start="" data-end=""></span>
+       <button type="button" class="btn" onclick="monthMove(+1);">다음달</button>
+</div>
+
+</body>
+</html>

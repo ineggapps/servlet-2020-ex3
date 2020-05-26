@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(function () {
+        // $("form input[name=upload]").change(function () {//but 동적으로 추가된 객체는 이벤트가 처리되지 않음.
+        $("body").on("change", "form input[name=upload]", function () {
+          // 동적으로 추가된 이벤트까지 처리
+          if (!$(this).val()) {
+            //file객체에 값이 입력되지 않은 경우에는 아무것도 수행하지 않는다
+            return;
+          }
+
+          var b = false;
+          $("form input[name=upload]").each(function () {
+            if (!$(this).val()) {
+              b = true;
+              return false; //each의 함수구문을 빠져나간 것이지 on의 함수를 빠져나간 것이 아니다.
+            }
+          });
+          if (b) {
+            //b==true는 파일 첨부가 되지 않은 공란이 존재했다는 의미
+            return false;
+          }
+
+          var $tr, $td, $input;
+          $tr = $("<tr>", { height: 35 });
+          $td = $("<td>", { width: 100, align: "center", html: "첨부" }); //<td width="100" align="center">첨부</td>
+          $tr.append($td);
+          $td = $("<td>", { width: 400, style: "padding-left: 10px;" });
+          $input = $("<input>", { type: "file", name: "upload" });
+          $td.append($input);
+          $tr.append($td);
+
+          $("#tbFile").append($tr);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <form name="myForm" enctype="multipart/form-data" method="POST">
+        <table
+          border="1"
+          style="widows: 500px; margin: 30px auto; border-spacing: 0; border-collapse: collapse;"
+        >
+          <tbody id="tbFile">
+            <tr height="35">
+              <td width="100" align="center">첨부</td>
+              <td width="400" style="padding-left: 10px;"><input type="file" name="upload" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>
